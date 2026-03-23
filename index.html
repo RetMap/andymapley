@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andy Mapley | Senior Product Manager</title>
+    <style>
+        :root {
+            --primary: #2d3436;
+            --accent: #0984e3;
+            --bg: #fdfdfd;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-light: #636e72;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .header-text p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .career-text {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-grid li {
+            background: #e1f0ff;
+            color: #074b83;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card a.img-link {
+            display: block;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .social-links {
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 40px;
+        }
+
+        .linkedin-link {
+            color: #0077b5;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .interests {
+            background: #f1f2f6;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .interests h3 { margin-top: 0; }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="1755013995277.jpeg" alt="Andy Mapley">
+        <div class="header-text">
+            <h1>Andy Mapley</h1>
+            <p>Senior Product Manager</p>
+        </div>
+    </header>
+
+    <section id="career">
+        <h2>Career Journey</h2>
+        <div class="career-text">
+            <p>
+                I’ve spent my career helping major brands like TUI, Holland & Barrett, and M&S build better digital experiences. 
+                Most recently at TUI, I’ve been leading squads to improve how customers discover holidays using AI and SEO. 
+                Before that, I was at Holland & Barrett, where I helped launch their brand-new loyalty scheme from scratch. 
+                I also spent time at Marks & Spencer, focusing on making the Sparks loyalty program more rewarding for members and exploring new premium membership tiers. 
+                I actually started my journey in digital experience management at Interactive Schools, where I managed the launch of over 50 websites annually for schools globally.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Expertise</h2>
+        <ul class="skills-grid">
+            <li>Product Strategy</li>
+            <li>0-to-1 Product Development</li>
+            <li>KPI Ownership</li>
+            <li>User Discovery & Research</li>
+            <li>Stakeholder Management</li>
+            <li>Backend Systems & Technical Workflows</li>
+            <li>AI & Automation</li>
+            <li>Agile Methodologies</li>
+            <li>AB Testing</li>
+        </ul>
+    </section>
+
+    <section id="portfolio">
+        <h2>Personal Projects</h2>
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <a href="https://example.com/project-one" class="img-link">
+                    <img src="placeholder-1.jpg" alt="Project One">
+                </a>
+                <div class="project-content">
+                    <h3>Project Name One</h3>
+                    <p>Brief overview of project one. Describe the problem you solved, the tech stack you used, and the eventual impact or result.</p>
+                    <a href="https://example.com/project-one" class="btn">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <a href="https://example.com/project-two" class="img-link">
+                    <img src="placeholder-2.jpg" alt="Project Two">
+                </a>
+                <div class="project-content">
+                    <h3>Project Name Two</h3>
+                    <p>Brief overview of project two. Focus on the core value proposition and what you personally contributed to its development.</p>
+                    <a href="https://example.com/project-two" class="btn">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="interests">
+        <h3>Outside of Work</h3>
+        <p>Beyond product management, I enjoy staying active and exploring new technologies. Whether it's testing the latest AI tools or diving into a new hobby, I'm always looking for ways to learn and grow outside the office.</p>
+    </section>
+
+    <footer class="social-links">
+        <a href="https://www.linkedin.com/in/andy-mapley/" class="linkedin-link">Connect on LinkedIn</a>
+    </footer>
+</div>
+
+</body>
+</html>

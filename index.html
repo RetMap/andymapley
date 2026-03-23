@@ -57,6 +57,12 @@
             font-size: 2.5rem;
             color: var(--primary);
             line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .header-text h1 i {
+            font-style: italic;
+            font-weight: 700; /* Keeping it bold but italicised as requested */
         }
 
         .header-text p {
@@ -93,9 +99,11 @@
             margin-bottom: 30px;
         }
 
-        /* --- Fun LinkedIn Button --- */
+        /* --- Centered Fun LinkedIn Button --- */
         .linkedin-container {
             margin-bottom: 60px;
+            display: flex;
+            justify-content: center; /* This centers the button horizontally */
         }
 
         .fun-btn {
@@ -226,22 +234,27 @@
     <header>
         <img src="1755013995277.jpeg" alt="Andy Mapley">
         <div class="header-text">
-            <div class="greeting">Hi there</div>
-            <h1>Andy Mapley</h1>
+            <div class="greeting">Hi there...</div>
+            <h1>I'm <i>Andy Mapley</i></h1>
             <p>Product Manager</p>
         </div>
     </header>
 
     <section id="career">
-        <h2>Career Journey</h2>
+        <h2>My Career Journey</h2>
         <div class="career-text">
-            <p>
+            
+                <p>
                 I’ve spent my career helping major brands like TUI, Holland & Barrett, and M&S build better digital experiences. 
-                Most recently at TUI, I’ve been leading squads to improve how customers discover holidays using AI and SEO. 
-                Before that, I was at Holland & Barrett, where I optimised their loyalty scheme and supported discovery of a new loyalty offering. 
-                I also spent time at Marks & Spencer, focusing on making the Sparks loyalty program more rewarding for members and exploring new premium membership tiers. 
-                I actually started my product journey in digital experience management at Interactive Schools, where I managed the launch of over 50 websites annually for schools globally.
+                Most recently at <b>TUI</b>, I’ve been leading squads to rethink holiday discovery; we've established the brand as a top authority in travel search by leaning into AI and automation, while launching our pages on new static template which drove +6.2% page conversion and +1 SEO ranking.
             </p>
+            <p>
+                Before that, I was at <b>Holland & Barrett</b>, where I helped start discvoery on their brand-new loyalty scheme and led the discovery for features that drove long-term retention and increased total annual customer value by £829k pa. I also spent time at <b>Marks & Spencer</b>, where I focused on making the Sparks program more rewarding—from exploring new premium membership tiers to running experiments that successfully cut checkout bounce rates by 3%.
+            </p>
+            <p>
+                I actually started my product journey at <b>Interactive Schools</b>, as the Lead Digital Experience Manager, where I managed the launch of over 50 websites annually and built new testing processes that slashed bug reports by 50%. I’m at my best when I’m using data to solve real human problems or taking a product from 0 to 1.
+            </p>
+            
         </div>
 
         <div class="linkedin-container">

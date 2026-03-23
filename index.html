@@ -12,6 +12,7 @@
             --card-bg: #ffffff;
             --text: #2d3436;
             --text-light: #636e72;
+            --linkedin-blue: #0077b5;
         }
 
         body {
@@ -89,7 +90,66 @@
         .career-text {
             font-size: 1.1rem;
             color: #444;
+            margin-bottom: 30px;
         }
+
+        /* --- Fun LinkedIn Button --- */
+        .linkedin-container {
+            margin-bottom: 60px;
+        }
+
+        .fun-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--linkedin-blue);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+        }
+
+        .fun-btn:hover {
+            transform: translateY(3px);
+            box-shadow: 0 2px 8px rgba(0, 119, 181, 0.2);
+            background-color: #006396;
+        }
+
+        .jump-icon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 35px;
+            height: 35px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .fun-btn:hover .jump-icon {
+            top: -45px;
+            transform: translateX(-50%) scale(1) rotate(-10deg);
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .jump-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--linkedin-blue);
+        }
+        /* -------------------------- */
 
         .skills-grid {
             display: flex;
@@ -126,10 +186,6 @@
             transform: translateY(-5px);
         }
 
-        .project-card a.img-link {
-            display: block;
-        }
-
         .project-card img {
             width: 100%;
             height: 200px;
@@ -139,17 +195,6 @@
 
         .project-content {
             padding: 20px;
-        }
-
-        .project-content h3 {
-            margin: 0 0 10px;
-            font-size: 1.3rem;
-        }
-
-        .project-content p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
         }
 
         .btn {
@@ -163,30 +208,12 @@
             transition: opacity 0.2s;
         }
 
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .social-links {
-            text-align: center;
-            border-top: 1px solid #eee;
-            padding-top: 40px;
-        }
-
-        .linkedin-link {
-            color: #0077b5;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
         .interests {
             background: #f1f2f6;
             padding: 30px;
             border-radius: 12px;
             margin-top: 40px;
         }
-        .interests h3 { margin-top: 0; }
 
         @media (max-width: 600px) {
             header { flex-direction: column; text-align: center; }
@@ -215,6 +242,15 @@
                 I also spent time at Marks & Spencer, focusing on making the Sparks loyalty program more rewarding for members and exploring new premium membership tiers. 
                 I actually started my product journey in digital experience management at Interactive Schools, where I managed the launch of over 50 websites annually for schools globally.
             </p>
+        </div>
+
+        <div class="linkedin-container">
+            <a href="https://www.linkedin.com/in/andy-mapley/" class="fun-btn" target="_blank" rel="noopener noreferrer">
+                <div class="jump-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </div>
+                Connect on LinkedIn
+            </a>
         </div>
     </section>
 
@@ -264,10 +300,6 @@
         <h3>Outside of Work</h3>
         <p>Beyond product management, I enjoy staying active and exploring new technologies. Whether it's testing the latest AI tools or diving into a new hobby, I'm always looking for ways to learn and grow outside the office.</p>
     </section>
-
-    <footer class="social-links">
-        <a href="https://www.linkedin.com/in/andy-mapley/" class="linkedin-link" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
-    </footer>
 </div>
 
 </body>

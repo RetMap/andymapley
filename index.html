@@ -3,331 +3,1160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andy Mapley | Product Manager</title>
+    <title>Andy Mapley — Product Manager</title>
+    <meta name="description" content="Andy Mapley — Product Manager specialising in 0→1 product, discovery and AI-enabled experiences. Previously TUI, Holland & Barrett, M&S.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #2d3436;
-            --accent: #0984e3;
-            --bg: #fdfdfd;
-            --card-bg: #ffffff;
-            --text: #2d3436;
-            --text-light: #636e72;
-            --linkedin-blue: #0077b5;
+            --paper:      #f2ece0;
+            --paper-warm: #ece4d2;
+            --ink:         #141414;
+            --ink-soft:    #2a2a2a;
+            --muted:       #6b6459;
+            --rule:        #1414141a;
+            --accent:      #ff3d00;
+            --accent-soft: #ffe2d6;
+            --liverpool:   #c8102e;
+            --night:       #0d0d0d;
+            --night-soft:  #1a1a1a;
+
+            --f-display: 'Instrument Serif', 'Times New Roman', serif;
+            --f-body:    'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            --f-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: var(--f-body);
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.5;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .container {
-            max-width: 900px;
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.35;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0 0.08 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        }
+
+        ::selection { background: var(--accent); color: var(--paper); }
+
+        a { color: inherit; text-decoration: none; }
+
+        img { max-width: 100%; display: block; }
+
+        /* --- Layout scaffolding --- */
+        .shell { width: 100%; padding: 0 clamp(20px, 4vw, 48px); }
+        .inner { max-width: 1400px; margin: 0 auto; }
+
+        /* --- Top navigation bar --- */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px clamp(20px, 4vw, 48px);
+            font-family: var(--f-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            mix-blend-mode: difference;
+            color: var(--paper);
+        }
+        .topbar .dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+            animation: pulse 2s var(--ease-in-out) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+        }
+        .topbar-right { display: flex; gap: 24px; }
+        .topbar-right a { transition: opacity 0.2s; }
+        .topbar-right a:hover { opacity: 0.5; }
+        @media (max-width: 700px) {
+            .topbar-right a:not(.nav-connect) { display: none; }
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 100vh;
+            padding: 120px clamp(20px, 4vw, 48px) 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+            gap: 30px 40px;
+            align-items: end;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
+            width: 100%;
         }
 
-        header {
+        .eyebrow {
+            font-family: var(--f-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
             display: flex;
             align-items: center;
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: 12px;
         }
-
-        header img {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .header-text .greeting {
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 2px;
-            color: var(--text-light);
-        }
-
-        .header-text h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: var(--primary);
-            line-height: 1.1;
-            font-weight: 700;
-        }
-
-        .header-text h1 i {
-            font-style: italic;
-            font-weight: 700; /* Keeping it bold but italicised as requested */
-        }
-
-        .header-text p {
-            margin: 5px 0 0;
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        section {
-            margin-bottom: 60px;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
+        .eyebrow::before {
             content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
+            width: 28px; height: 1px;
+            background: var(--ink);
         }
 
-        .career-text {
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 30px;
+        .hero-eyebrow {
+            grid-column: 1 / -1;
+            animation: fadeUp 0.9s var(--ease-out) both;
         }
 
-        /* --- Centered Fun LinkedIn Button --- */
-        .linkedin-container {
-            margin-bottom: 60px;
-            display: flex;
-            justify-content: center; /* This centers the button horizontally */
+        .name-block { grid-column: 1; }
+
+        .name-block .greeting {
+            font-family: var(--f-body);
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            color: var(--muted);
+            margin-bottom: 14px;
+            font-weight: 400;
+            overflow: hidden;
+        }
+        .name-block .greeting span {
+            display: inline-block;
+            animation: slideUp 1s var(--ease-out) 0.1s both;
         }
 
-        .fun-btn {
-            position: relative;
+        .name {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(3.2rem, 13vw, 11rem);
+            line-height: 0.92;
+            letter-spacing: -0.025em;
+            color: var(--ink);
+        }
+
+        .name .line { display: block; overflow: hidden; padding-bottom: 0.14em; }
+        .name .line span {
+            display: inline-block;
+            transform: translateY(110%);
+            animation: slideUp 1.1s var(--ease-out) both;
+        }
+        .name .line:nth-child(1) span { animation-delay: 0.25s; }
+        .name .line:nth-child(2) span { animation-delay: 0.4s; }
+        .name em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent);
+        }
+
+        .role-tag {
+            grid-column: 1;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            background-color: var(--linkedin-blue);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+            gap: 14px;
+            font-family: var(--f-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 10px 18px;
+            border: 1px solid var(--ink);
+            border-radius: 100px;
+            background: transparent;
+            margin-top: 28px;
+            justify-self: start;
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-out) 0.9s forwards;
+        }
+        .role-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
-        .fun-btn:hover {
-            transform: translateY(3px);
-            box-shadow: 0 2px 8px rgba(0, 119, 181, 0.2);
-            background-color: #006396;
+        .portrait-wrap {
+            grid-column: 2;
+            grid-row: 2 / 4;
+            position: relative;
+            justify-self: end;
+            align-self: end;
+            opacity: 0;
+            animation: fadeInScale 1.3s var(--ease-out) 0.6s forwards;
         }
-
-        .jump-icon {
+        .portrait-wrap img {
+            width: clamp(150px, 22vw, 260px);
+            height: clamp(180px, 28vw, 320px);
+            object-fit: cover;
+            border-radius: 8px;
+            filter: grayscale(30%) contrast(1.05);
+            transform: rotate(2deg);
+            transition: transform 0.6s var(--ease-out), filter 0.6s var(--ease-out);
+        }
+        .portrait-wrap:hover img {
+            transform: rotate(0deg) scale(1.02);
+            filter: grayscale(0%) contrast(1.1);
+        }
+        .portrait-wrap::after {
+            content: '★';
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%) scale(0);
-            width: 35px;
-            height: 35px;
-            background: white;
-            border-radius: 6px;
+            top: -18px; right: -18px;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--paper);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: -1;
+            font-size: 1.4rem;
+            animation: spinSlow 14s linear infinite;
+        }
+        @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+        .hero-footer {
+            position: absolute;
+            bottom: 30px;
+            left: clamp(20px, 4vw, 48px);
+            right: clamp(20px, 4vw, 48px);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-family: var(--f-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
             opacity: 0;
+            animation: fadeUp 1s var(--ease-out) 1.4s forwards;
+        }
+        .hero-footer .scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .hero-footer .scroll-hint .arrow {
+            width: 1px; height: 30px;
+            background: var(--ink);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-footer .scroll-hint .arrow::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 50%;
+            background: var(--accent);
+            animation: scrollDown 1.8s var(--ease-in-out) infinite;
+        }
+        @keyframes scrollDown {
+            0% { top: -100%; }
+            100% { top: 200%; }
         }
 
-        .fun-btn:hover .jump-icon {
-            top: -45px;
-            transform: translateX(-50%) scale(1) rotate(-10deg);
+        @media (max-width: 700px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .portrait-wrap {
+                grid-column: 1;
+                grid-row: auto;
+                justify-self: start;
+                order: -1;
+                margin-bottom: 20px;
+            }
+            .portrait-wrap img {
+                width: 120px;
+                height: 140px;
+            }
+            .hero-footer { position: static; margin-top: 40px; }
+        }
+
+        /* --- Marquee (moving ticker) --- */
+        .marquee {
+            overflow: hidden;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+            padding: 18px 0;
+            white-space: nowrap;
+        }
+        .marquee-track {
+            display: inline-flex;
+            gap: 48px;
+            animation: marquee 40s linear infinite;
+            font-family: var(--f-display);
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+            letter-spacing: -0.01em;
+        }
+        .marquee-track span { display: inline-flex; align-items: center; gap: 48px; }
+        .marquee-track .dot-sep {
+            display: inline-block;
+            width: 10px; height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        @keyframes marquee {
+            to { transform: translateX(-50%); }
+        }
+
+        /* --- Section foundations --- */
+        section[data-section] {
+            padding: clamp(80px, 12vh, 140px) clamp(20px, 4vw, 48px);
+            position: relative;
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: start;
+        }
+        .section-head .index {
+            font-family: var(--f-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-top: 12px;
+            border-top: 1px solid var(--ink);
+        }
+        .section-head h2 {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+        }
+        .section-head h2 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        @media (max-width: 700px) {
+            .section-head { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        /* --- Career section --- */
+        .career-body {
+            max-width: 880px;
+            margin-left: auto;
+            font-family: var(--f-body);
+            font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+            line-height: 1.55;
+            color: var(--ink-soft);
+            font-weight: 400;
+        }
+        .career-body p { margin-bottom: 1.4em; }
+        .career-body p:first-child::first-letter {
+            font-family: var(--f-display);
+            font-size: 5rem;
+            font-weight: 400;
+            float: left;
+            line-height: 0.85;
+            margin: 8px 14px -4px 0;
+            color: var(--accent);
+            font-style: italic;
+        }
+        .career-body b {
+            font-weight: 600;
+            position: relative;
+            color: var(--ink);
+            background: linear-gradient(120deg, transparent 0%, var(--accent-soft) 0%);
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            padding: 0 3px;
+            transition: background-size 1.2s var(--ease-out);
+        }
+        .career-body.in-view b { background-size: 100% 100%; }
+
+        /* Stats row */
+        .stats {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            background: var(--ink);
+        }
+        .stat {
+            background: var(--paper);
+            padding: 32px 24px;
+            position: relative;
+        }
+        .stat .value {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+        .stat .value .sign {
+            font-size: 0.55em;
+            color: var(--accent);
+            font-style: italic;
+        }
+        .stat .label {
+            font-family: var(--f-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+        @media (max-width: 900px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* --- Reveal utility --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+        }
+        .reveal.in-view {
             opacity: 1;
-            z-index: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* --- LinkedIn CTA band --- */
+        .connect-band {
+            background: var(--accent);
+            color: var(--paper);
+            padding: clamp(60px, 10vh, 110px) clamp(20px, 4vw, 48px);
+            overflow: hidden;
+            position: relative;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+        .connect-band .inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .connect-band h3 {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-style: italic;
+            font-size: clamp(2.4rem, 7vw, 5.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+        }
+        .connect-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 34px;
+            background: var(--ink);
+            color: var(--paper);
+            border-radius: 100px;
+            font-family: var(--f-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: transform 0.4s var(--ease-out), background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .connect-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--paper);
+            transform: translateY(100%);
+            transition: transform 0.5s var(--ease-out);
+            z-index: 0;
+        }
+        .connect-btn:hover::before { transform: translateY(0); }
+        .connect-btn:hover { color: var(--ink); }
+        .connect-btn > * { position: relative; z-index: 1; }
+        .connect-btn:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--ink); }
+        .connect-btn svg {
+            width: 22px; height: 22px;
+            fill: currentColor;
         }
 
-        .jump-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--linkedin-blue);
+        /* --- Skills scrolling (expertise) --- */
+        .expertise {
+            background: var(--paper-warm);
+            border-bottom: 1px solid var(--ink);
         }
-        /* -------------------------- */
+        .skills-marquee-wrap { overflow: hidden; padding: 20px 0; }
+        .skills-track {
+            display: inline-flex;
+            gap: 24px;
+            animation: marquee 50s linear infinite;
+            white-space: nowrap;
+        }
+        .skills-track.reverse { animation-direction: reverse; animation-duration: 60s; }
+        .skills-track span {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(2rem, 4.5vw, 4rem);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .skills-track .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 20px;
+            border: 1px solid var(--ink);
+            border-radius: 100px;
+            font-style: italic;
+        }
+        .skills-track .chip-filled {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+        .skills-track .chip-accent {
+            background: var(--accent);
+            color: var(--paper);
+            border-color: var(--accent);
+        }
+        .skills-track .divider {
+            display: inline-block;
+            width: 14px; height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
 
-        .skills-grid {
+        /* --- Portfolio — dark section --- */
+        .portfolio-section {
+            background: var(--night);
+            color: var(--paper);
+            border-top: 1px solid var(--ink);
+        }
+        .portfolio-section .section-head .index { border-top-color: var(--paper); color: rgba(242, 236, 224, 0.6); }
+        .portfolio-section .section-head h2 { color: var(--paper); }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid rgba(242, 236, 224, 0.2);
+        }
+        .project-item {
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(242, 236, 224, 0.2);
+            align-items: center;
+            position: relative;
+            transition: padding 0.5s var(--ease-out);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+        .project-item:hover {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        .project-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.5s var(--ease-out);
+            z-index: 0;
+        }
+        .project-item:hover::before {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+        .project-item > * { position: relative; z-index: 1; }
+
+        .project-num {
+            font-family: var(--f-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: rgba(242, 236, 224, 0.6);
+            transition: color 0.3s;
+        }
+        .project-item:hover .project-num { color: var(--night); }
+
+        .project-content h3 {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+            transition: color 0.3s;
+        }
+        .project-item:hover .project-content h3 {
+            color: var(--night);
+            font-style: italic;
+        }
+
+        .project-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .skills-grid li {
-            background: #e1f0ff;
-            color: #074b83;
-            padding: 8px 16px;
-            border-radius: 50px;
+            gap: 20px;
             font-size: 0.95rem;
-            font-weight: 500;
+            color: rgba(242, 236, 224, 0.7);
+            max-width: 680px;
+            transition: color 0.3s;
         }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .project-item:hover .project-meta { color: rgba(13, 13, 13, 0.8); }
+        .project-meta p { margin: 0; }
+        .project-meta strong {
+            font-family: var(--f-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+            transition: color 0.3s;
         }
+        .project-item:hover .project-meta strong { color: var(--night); }
 
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 12px;
+        .project-thumb {
+            width: 160px;
+            height: 100px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            border-radius: 4px;
+            position: relative;
+            flex-shrink: 0;
+            transition: transform 0.5s var(--ease-out);
         }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 200px;
+        .project-thumb img {
+            width: 100%; height: 100%;
             object-fit: cover;
-            background-color: #eee;
+            transition: transform 0.6s var(--ease-out), filter 0.4s;
+            filter: grayscale(60%) brightness(0.7);
+        }
+        .project-item:hover .project-thumb img {
+            transform: scale(1.08);
+            filter: grayscale(0%) brightness(1);
         }
 
-        .project-content {
-            padding: 20px;
+        .project-arrow {
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            border: 1px solid rgba(242, 236, 224, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.3s, background 0.3s, transform 0.5s var(--ease-out);
+            flex-shrink: 0;
+        }
+        .project-arrow svg { width: 18px; height: 18px; stroke: currentColor; }
+        .project-item:hover .project-arrow {
+            border-color: var(--night);
+            background: var(--night);
+            color: var(--paper);
+            transform: rotate(-45deg);
         }
 
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.2s;
+        @media (max-width: 900px) {
+            .project-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 28px 0; }
+            .project-thumb, .project-arrow { display: none; }
         }
 
-        .interests {
-            background: #f1f2f6;
-            padding: 30px;
-            border-radius: 12px;
-            margin-top: 40px;
+        /* --- Outside / Interests section --- */
+        .interests-section {
+            padding: clamp(80px, 12vh, 140px) clamp(20px, 4vw, 48px);
+            background: var(--paper);
+        }
+        .interests-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .interests-title {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+        }
+        .interests-title em { font-style: italic; color: var(--accent); }
+
+        .interests-body {
+            font-family: var(--f-body);
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+            line-height: 1.6;
+            color: var(--ink-soft);
+        }
+        .interests-body p { margin-bottom: 1em; }
+
+        .tag-row {
+            margin-top: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tag-row .tag {
+            font-family: var(--f-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border: 1px solid var(--ink);
+            border-radius: 100px;
+            color: var(--ink);
+            transition: background 0.3s, color 0.3s;
+        }
+        .tag-row .tag:hover { background: var(--ink); color: var(--paper); }
+        .tag-row .tag.lfc { background: var(--liverpool); color: white; border-color: var(--liverpool); }
+        .tag-row .tag.lfc:hover { background: transparent; color: var(--liverpool); }
+
+        @media (max-width: 800px) {
+            .interests-grid { grid-template-columns: 1fr; gap: 30px; }
         }
 
-        @media (max-width: 600px) {
-            header { flex-direction: column; text-align: center; }
+        /* --- Footer --- */
+        footer {
+            background: var(--night);
+            color: var(--paper);
+            padding: 80px clamp(20px, 4vw, 48px) 40px;
+            border-top: 1px solid var(--ink);
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-huge {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-style: italic;
+            font-size: clamp(3rem, 15vw, 13rem);
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            margin-bottom: 60px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+        }
+        .footer-huge a { display: inline-block; transition: color 0.3s; }
+        .footer-huge a:hover { color: var(--accent); }
+        .footer-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(242, 236, 224, 0.2);
+            font-family: var(--f-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(242, 236, 224, 0.5);
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.92) rotate(2deg); }
+            to   { opacity: 1; transform: scale(1) rotate(2deg); }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(110%); }
+            to   { transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001s !important;
+                transition-duration: 0.001s !important;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <img src="1755013995277.jpeg" alt="Andy Mapley">
-        <div class="header-text">
-            <div class="greeting">Hi there...</div>
-            <h1>I'm <i>Andy Mapley</i></h1>
-            <p>Product Manager</p>
-        </div>
-    </header>
+<!-- TOP NAV -->
+<nav class="topbar">
+    <div><span class="dot"></span>Andy Mapley — Product</div>
+    <div class="topbar-right">
+        <a href="#career">Career</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#work">Work</a>
+        <a href="https://www.linkedin.com/in/andy-mapley/" class="nav-connect" target="_blank" rel="noopener noreferrer">Connect ↗</a>
+    </div>
+</nav>
 
-    <section id="career">
-        <h2>My Career Journey</h2>
-        <div class="career-text">
-            
-                <p>
-                I’ve spent my career helping major brands like TUI, Holland & Barrett, and M&S build better digital experiences. 
-                Most recently at <b>TUI</b>, I’ve been leading squads to rethink holiday discovery; we've established the brand as a top authority in travel search by leaning into AI and automation, while launching our pages on new static template which drove +6.2% page conversion and +1 SEO ranking.
-            </p>
-            <p>
-                Before that, I was at <b>Holland & Barrett</b>, where I helped start discovery on their brand-new loyalty scheme and led the discovery for features that drove long-term retention and increased total annual customer value by £829k pa. I also spent time at <b>Marks & Spencer</b>, where I focused on making the Sparks program more rewarding—from exploring new premium membership tiers to running experiments that successfully cut checkout bounce rates by 3%.
-            </p>
-            <p>
-                I actually started my product journey at <b>Interactive Schools</b>, as the Lead Digital Experience Manager, where I managed the launch of over 50 websites annually and built new testing processes that slashed bug reports by 50%. I’m at my best when I’m using data to solve real human problems or taking a product from 0 to 1.
-            </p>
-            
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-grid">
+        <div class="hero-eyebrow eyebrow">Portfolio / 2026 / North London</div>
+
+        <div class="name-block">
+            <div class="greeting"><span>Hi there —</span></div>
+            <h1 class="name">
+                <span class="line"><span>I'm Andy</span></span>
+                <span class="line"><span><em>Mapley.</em></span></span>
+            </h1>
         </div>
 
-        <div class="linkedin-container">
-            <a href="https://www.linkedin.com/in/andy-mapley/" class="fun-btn" target="_blank" rel="noopener noreferrer">
-                <div class="jump-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </div>
-                Connect on LinkedIn
-            </a>
+        <div class="portrait-wrap">
+            <img src="1755013995277.jpeg" alt="Portrait of Andy Mapley">
         </div>
-    </section>
 
-    <section id="skills">
-        <h2>Expertise</h2>
-        <ul class="skills-grid">
-            <li>Product Strategy</li>
-            <li>0-to-1 Product Development</li>
-            <li>KPI Ownership</li>
-            <li>User Discovery & Research</li>
-            <li>Stakeholder Management</li>
-            <li>Backend Systems & Technical Workflows</li>
-            <li>AI & Automation</li>
-            <li>Agile Methodologies</li>
-            <li>AB Testing</li>
-        </ul>
-    </section>
+        <div class="role-tag">Product Manager</div>
+    </div>
 
-    <section id="portfolio">
-        <h2>Personal Projects</h2>
-        <div class="portfolio-grid">
-            <div class="project-card">
-                <a href="https://retmap.github.io/hows-my-air/" class="img-link" target="_blank" rel="noopener noreferrer">
-                    <img src="hows-my-air.jpg" alt="How's My Air">
-                </a>
-                <div class="project-content">
-                    <h3>How's My Air</h3>
-                    <p><strong>Challenge:</strong> Localized air quality data is often buried in complex reports or requires manual entry, making quick health checks difficult.</p>
-                    <p><strong>Solution:</strong> Built a responsive web app using an open-source API and location tracking to deliver instant, hyper-local insights.</p>
-                    <a href="https://retmap.github.io/hows-my-air/" class="btn" target="_blank" rel="noopener noreferrer">View Project</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <a href="https://retmap.github.io/Pachinko/" class="img-link" target="_blank" rel="noopener noreferrer">
-                    <img src="pachinko.jpg" alt="Pachinko Game">
-                </a>
-                <div class="project-content">
-                    <h3>Pachinko Game</h3>
-                    <p><strong>Challenge:</strong> Existing free-to-play Pachinko options are often cluttered with ads or feature outdated interfaces.</p>
-                    <p><strong>Solution:</strong> Developed a minimalist, browser-native version of the game to provide a clean and accessible player experience.</p>
-                    <a href="https://retmap.github.io/Pachinko/" class="btn" target="_blank" rel="noopener noreferrer">View Project</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <a href="https://retmap.github.io/pixel-art-studio/" class="img-link" target="_blank" rel="noopener noreferrer">
-                    <img src="pixel-art-studio.jpg" alt="Pixel art studio">
-                </a>
-                <div class="project-content">
-                    <h3>Pixel Art Studio</h3>
-                    <p><strong>Challenge:</strong> Standard digital art software can be over-complicated for users needing to create simple retro-style assets.</p>
-                    <p><strong>Solution:</strong> Engineered an intuitive, browser-based editor with essential tools and PNG export for a streamlined workflow.</p>
-                    <a href="https://retmap.github.io/pixel-art-studio/" class="btn" target="_blank" rel="noopener noreferrer">View Project</a>
-                </div>
-            </div>
+    <div class="hero-footer">
+        <div class="scroll-hint">
+            <div>Scroll</div>
+            <div class="arrow"></div>
         </div>
-    </section>
+        <div>TUI · H&amp;B · M&amp;S</div>
+    </div>
+</section>
 
-    <section class="interests">
-        <h3>Outside of Work</h3>
-        <p>Beyond product management, I’m based in North London where I blend my art background with a passion for gaming and photography. I am currently focused on finding meaningful ways to integrate AI into my daily life and creative projects. When I’m not exploring new tech or behind a lens, you’ll likely find me keeping up with Liverpool FC.</p>
-    </section>
+<!-- MARQUEE DIVIDER -->
+<div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+        <span>0 → 1 Product <span class="dot-sep"></span> Discovery &amp; Research <span class="dot-sep"></span> AI &amp; Automation <span class="dot-sep"></span> Experimentation <span class="dot-sep"></span></span>
+        <span>0 → 1 Product <span class="dot-sep"></span> Discovery &amp; Research <span class="dot-sep"></span> AI &amp; Automation <span class="dot-sep"></span> Experimentation <span class="dot-sep"></span></span>
+        <span>0 → 1 Product <span class="dot-sep"></span> Discovery &amp; Research <span class="dot-sep"></span> AI &amp; Automation <span class="dot-sep"></span> Experimentation <span class="dot-sep"></span></span>
+    </div>
 </div>
+
+<!-- CAREER JOURNEY -->
+<section data-section id="career">
+    <div class="section-head reveal">
+        <div class="index">01 — Career</div>
+        <h2>The story so <em>far.</em></h2>
+    </div>
+
+    <div class="career-body reveal reveal-delay-1" id="careerBody">
+        <p>
+            I've spent my career helping major brands like TUI, Holland &amp; Barrett, and M&amp;S build better digital experiences. Most recently at <b>TUI</b>, I've been leading squads to rethink holiday discovery — establishing the brand as a top authority in travel search by leaning into AI and automation, rebuilding our core page templates mobile-first, and shipping a new static template that drove +6.2% page conversion and +1 SEO ranking. Alongside this, I've led page-level optimisations that have added over £1m in annual margin.
+        </p>
+        <p>
+            Before that, I was at <b>Holland &amp; Barrett</b>, where I helped start discovery on their brand-new loyalty scheme and led the discovery for features that drove long-term retention and increased total annual customer value by £829k pa. I also spent time at <b>Marks &amp; Spencer</b>, where I focused on making the Sparks program more rewarding — from exploring new premium membership tiers to running experiments that successfully cut checkout bounce rates by 3%.
+        </p>
+        <p>
+            I actually started my product journey at <b>Interactive Schools</b>, as the Lead Digital Experience Manager, where I managed the launch of over 50 websites annually and built new testing processes that slashed bug reports by 50%. I'm at my best when I'm using data to solve real human problems or taking a product from 0 to 1.
+        </p>
+    </div>
+
+    <!-- Animated stats -->
+    <div class="stats reveal reveal-delay-2">
+        <div class="stat">
+            <div class="value"><span class="sign">+</span><span class="num" data-target="6.2" data-suffix="%" data-decimals="1">0</span></div>
+            <div class="label">Page Conversion<br>TUI Holiday Pages</div>
+        </div>
+        <div class="stat">
+            <div class="value"><span class="sign">£</span><span class="num" data-target="829" data-suffix="k">0</span></div>
+            <div class="label">Annual Customer Value<br>H&amp;B Retention</div>
+        </div>
+        <div class="stat">
+            <div class="value"><span class="sign">£</span><span class="num" data-target="1" data-suffix="m+" data-decimals="1">0</span></div>
+            <div class="label">Annual Margin<br>TUI Page Optimisations</div>
+        </div>
+        <div class="stat">
+            <div class="value"><span class="sign">−</span><span class="num" data-target="3" data-suffix="%">0</span></div>
+            <div class="label">Checkout Bounce<br>M&amp;S Sparks</div>
+        </div>
+    </div>
+</section>
+
+<!-- LINKEDIN BAND -->
+<section class="connect-band">
+    <div class="inner">
+        <h3>Let's talk shop.</h3>
+        <a href="https://www.linkedin.com/in/andy-mapley/" class="connect-btn" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span>Connect on LinkedIn</span>
+        </a>
+    </div>
+</section>
+
+<!-- EXPERTISE SCROLLING MARQUEE -->
+<section class="expertise" id="expertise" data-section>
+    <div class="section-head reveal" style="margin-bottom: 40px;">
+        <div class="index">02 — Expertise</div>
+        <h2>Things I'm <em>fluent in.</em></h2>
+    </div>
+
+    <div class="skills-marquee-wrap" aria-hidden="false">
+        <div class="skills-track">
+            <span>
+                <span class="chip">Product Strategy</span>
+                <span class="divider"></span>
+                <span class="chip chip-filled">0-to-1 Product Development</span>
+                <span class="divider"></span>
+                <span class="chip">KPI Ownership</span>
+                <span class="divider"></span>
+                <span class="chip chip-accent">User Discovery &amp; Research</span>
+                <span class="divider"></span>
+            </span>
+            <span>
+                <span class="chip">Product Strategy</span>
+                <span class="divider"></span>
+                <span class="chip chip-filled">0-to-1 Product Development</span>
+                <span class="divider"></span>
+                <span class="chip">KPI Ownership</span>
+                <span class="divider"></span>
+                <span class="chip chip-accent">User Discovery &amp; Research</span>
+                <span class="divider"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="skills-marquee-wrap">
+        <div class="skills-track reverse">
+            <span>
+                <span class="chip chip-accent">Stakeholder Management</span>
+                <span class="divider"></span>
+                <span class="chip">Backend Systems &amp; Technical Workflows</span>
+                <span class="divider"></span>
+                <span class="chip chip-filled">AI &amp; Automation</span>
+                <span class="divider"></span>
+            </span>
+            <span>
+                <span class="chip chip-accent">Stakeholder Management</span>
+                <span class="divider"></span>
+                <span class="chip">Backend Systems &amp; Technical Workflows</span>
+                <span class="divider"></span>
+                <span class="chip chip-filled">AI &amp; Automation</span>
+                <span class="divider"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="skills-marquee-wrap">
+        <div class="skills-track">
+            <span>
+                <span class="chip">Agile Methodologies</span>
+                <span class="divider"></span>
+                <span class="chip chip-accent">AB Testing</span>
+                <span class="divider"></span>
+                <span class="chip chip-filled">Product Strategy</span>
+                <span class="divider"></span>
+            </span>
+            <span>
+                <span class="chip">Agile Methodologies</span>
+                <span class="divider"></span>
+                <span class="chip chip-accent">AB Testing</span>
+                <span class="divider"></span>
+                <span class="chip chip-filled">Product Strategy</span>
+                <span class="divider"></span>
+            </span>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO / DARK -->
+<section class="portfolio-section" id="work" data-section>
+    <div class="section-head reveal">
+        <div class="index">03 — Personal Projects</div>
+        <h2>Built on <em>weekends.</em></h2>
+    </div>
+
+    <div class="project-list">
+        <a class="project-item reveal" href="https://retmap.github.io/hows-my-air/" target="_blank" rel="noopener noreferrer">
+            <div class="project-num">/ 01</div>
+            <div class="project-content">
+                <h3>How's My Air</h3>
+                <div class="project-meta">
+                    <p><strong>Challenge</strong>Localized air quality data is often buried in complex reports or requires manual entry, making quick health checks difficult.</p>
+                    <p><strong>Solution</strong>Built a responsive web app using an open-source API and location tracking to deliver instant, hyper-local insights.</p>
+                </div>
+            </div>
+            <div class="project-thumb"><img src="hows-my-air.jpg" alt="How's My Air"></div>
+            <div class="project-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+            </div>
+        </a>
+
+        <a class="project-item reveal reveal-delay-1" href="https://retmap.github.io/Pachinko/" target="_blank" rel="noopener noreferrer">
+            <div class="project-num">/ 02</div>
+            <div class="project-content">
+                <h3>Pachinko Game</h3>
+                <div class="project-meta">
+                    <p><strong>Challenge</strong>Existing free-to-play Pachinko options are often cluttered with ads or feature outdated interfaces.</p>
+                    <p><strong>Solution</strong>Developed a minimalist, browser-native version of the game to provide a clean and accessible player experience.</p>
+                </div>
+            </div>
+            <div class="project-thumb"><img src="pachinko.jpg" alt="Pachinko Game"></div>
+            <div class="project-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+            </div>
+        </a>
+
+        <a class="project-item reveal reveal-delay-2" href="https://retmap.github.io/pixel-art-studio/" target="_blank" rel="noopener noreferrer">
+            <div class="project-num">/ 03</div>
+            <div class="project-content">
+                <h3>Pixel Art Studio</h3>
+                <div class="project-meta">
+                    <p><strong>Challenge</strong>Standard digital art software can be over-complicated for users needing to create simple retro-style assets.</p>
+                    <p><strong>Solution</strong>Engineered an intuitive, browser-based editor with essential tools and PNG export for a streamlined workflow.</p>
+                </div>
+            </div>
+            <div class="project-thumb"><img src="pixel-art-studio.jpg" alt="Pixel Art Studio"></div>
+            <div class="project-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- INTERESTS / OUTSIDE OF WORK -->
+<section class="interests-section" data-section>
+    <div class="interests-grid">
+        <div class="reveal">
+            <div class="eyebrow" style="margin-bottom: 24px;">04 — Offline</div>
+            <h2 class="interests-title">Outside of <em>work.</em></h2>
+        </div>
+        <div class="interests-body reveal reveal-delay-1">
+            <p>Beyond product management, I'm based in North London where I blend my art background with a passion for gaming and photography. I am currently focused on finding meaningful ways to integrate AI into my daily life and creative projects. When I'm not exploring new tech or behind a lens, you'll likely find me keeping up with Liverpool FC.</p>
+            <div class="tag-row">
+                <span class="tag">Art Background</span>
+                <span class="tag">Gaming</span>
+                <span class="tag">Photography</span>
+                <span class="tag">AI Tinkering</span>
+                <span class="tag lfc">Liverpool FC</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-huge">
+        <a href="https://www.linkedin.com/in/andy-mapley/" target="_blank" rel="noopener noreferrer">Let's build → </a>
+    </div>
+    <div class="footer-meta">
+        <div>© 2026 Andy Mapley</div>
+        <div>North London / Product</div>
+        <div>
+            <a href="https://www.linkedin.com/in/andy-mapley/" target="_blank" rel="noopener noreferrer" style="border-bottom: 1px solid currentColor;">LinkedIn ↗</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // --- Scroll reveal observer ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                // If it's the stats or career body, start counters
+                if (entry.target.classList.contains('stats')) {
+                    entry.target.querySelectorAll('.num').forEach(startCounter);
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Observe career body separately for the highlight effect
+    const careerBody = document.getElementById('careerBody');
+    if (careerBody) {
+        const careerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    careerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25 });
+        careerObserver.observe(careerBody);
+    }
+
+    // --- Number counters ---
+    function startCounter(el) {
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const duration = 1800;
+        const start = performance.now();
+
+        function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutExpo
+            const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const current = target * eased;
+            el.textContent = current.toFixed(decimals) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+            else el.textContent = target.toFixed(decimals) + suffix;
+        }
+        requestAnimationFrame(tick);
+    }
+
+    // --- Subtle parallax on portrait ---
+    const portrait = document.querySelector('.portrait-wrap img');
+    if (portrait && window.matchMedia('(pointer: fine)').matches) {
+        document.querySelector('.hero').addEventListener('mousemove', (e) => {
+            const { innerWidth, innerHeight } = window;
+            const x = (e.clientX / innerWidth - 0.5) * 14;
+            const y = (e.clientY / innerHeight - 0.5) * 14;
+            portrait.style.transform = `rotate(2deg) translate(${x}px, ${y}px)`;
+        });
+        document.querySelector('.hero').addEventListener('mouseleave', () => {
+            portrait.style.transform = 'rotate(2deg)';
+        });
+    }
+</script>
 
 </body>
 </html>

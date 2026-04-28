@@ -374,15 +374,131 @@
             .section-head { grid-template-columns: 1fr; gap: 20px; }
         }
 
-        /* --- Career section --- */
+        /* --- Career section: two-column editorial layout --- */
+        .career-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: clamp(40px, 6vw, 100px);
+            align-items: start;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .career-intro { position: relative; }
+        .career-intro .index {
+            font-family: var(--f-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-top: 12px;
+            border-top: 1px solid var(--ink);
+            margin-bottom: 28px;
+            display: inline-block;
+            min-width: 140px;
+        }
+        .career-intro h2 {
+            font-family: var(--f-display);
+            font-weight: 400;
+            font-size: clamp(2.6rem, 7vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            margin-bottom: 40px;
+            padding-bottom: 0.12em;
+        }
+        .career-intro h2 em { font-style: italic; color: var(--accent); }
+
+        .companies-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--rule);
+        }
+        .companies-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--rule);
+            font-family: var(--f-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink);
+            transition: padding 0.4s var(--ease-out), color 0.3s;
+        }
+        .companies-list li:hover { padding-left: 12px; color: var(--accent); }
+        .companies-list .co-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+        .companies-list .co {
+            font-family: var(--f-display);
+            font-size: 1.4rem;
+            text-transform: none;
+            letter-spacing: -0.01em;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+        .companies-list .role {
+            font-family: var(--f-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        .companies-list li:hover .role { color: var(--accent); opacity: 0.75; }
+        .companies-list .yr {
+            color: var(--muted);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        .companies-list .current .co::before {
+            content: '';
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-right: 12px;
+            vertical-align: middle;
+            animation: pulse 2s var(--ease-in-out) infinite;
+        }
+
         .career-body {
-            max-width: 880px;
-            margin-left: auto;
             font-family: var(--f-body);
-            font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-            line-height: 1.55;
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+            line-height: 1.6;
             color: var(--ink-soft);
             font-weight: 400;
+        }
+        .career-body p { margin-bottom: 1.4em; }
+        .career-body p:first-child::first-letter {
+            font-family: var(--f-display);
+            font-size: 5rem;
+            font-weight: 400;
+            float: left;
+            line-height: 0.85;
+            margin: 8px 14px -4px 0;
+            color: var(--accent);
+            font-style: italic;
+        }
+        .career-body b {
+            font-weight: 600;
+            position: relative;
+            color: var(--ink);
+            background: linear-gradient(120deg, transparent 0%, var(--accent-soft) 0%);
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            padding: 0 3px;
+            transition: background-size 1.2s var(--ease-out);
+        }
+        .career-body.in-view b { background-size: 100% 100%; }
+        @media (max-width: 900px) {
+            .career-layout { grid-template-columns: 1fr; gap: 40px; }
         }
         .career-body p { margin-bottom: 1.4em; }
         .career-body p:first-child::first-letter {
@@ -574,7 +690,7 @@
             flex-shrink: 0;
         }
 
-        /* --- Portfolio — dark section --- */
+        /* --- Portfolio — dark editorial cards --- */
         .portfolio-section {
             background: var(--night);
             color: var(--paper);
@@ -583,131 +699,199 @@
         .portfolio-section .section-head .index { border-top-color: var(--paper); color: rgba(242, 236, 224, 0.6); }
         .portfolio-section .section-head h2 { color: var(--paper); }
 
-        .project-list {
+        .project-grid {
             display: flex;
             flex-direction: column;
-            border-top: 1px solid rgba(242, 236, 224, 0.2);
+            gap: clamp(60px, 10vh, 140px);
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .project-item {
+
+        .project-card {
             display: grid;
-            grid-template-columns: 60px 1fr auto;
-            gap: 40px;
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(242, 236, 224, 0.2);
+            grid-template-columns: 1.1fr 1fr;
+            gap: clamp(30px, 5vw, 80px);
             align-items: center;
-            position: relative;
-            transition: padding 0.5s var(--ease-out);
             text-decoration: none;
             color: inherit;
-            cursor: pointer;
+            position: relative;
         }
-        .project-item:hover {
-            padding-left: 24px;
-            padding-right: 24px;
+        .project-card.flip { grid-template-columns: 1fr 1.1fr; }
+        .project-card.flip .project-visual { order: 2; }
+        .project-card.flip .project-content { order: 1; }
+
+        .project-visual {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border-radius: 6px;
+            background: var(--night-soft);
+            transition: transform 0.7s var(--ease-out);
         }
-        .project-item::before {
+        .project-card:hover .project-visual {
+            transform: translateY(-8px);
+        }
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.9s var(--ease-out), filter 0.6s var(--ease-out);
+            filter: grayscale(40%) brightness(0.85) contrast(1.05);
+        }
+        .project-card:hover .project-visual img {
+            transform: scale(1.06);
+            filter: grayscale(0%) brightness(1) contrast(1);
+        }
+        /* Accent overlay sweep */
+        .project-visual::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: var(--accent);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.5s var(--ease-out);
-            z-index: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+            mix-blend-mode: multiply;
+            opacity: 0;
+            transition: opacity 0.5s var(--ease-out);
+            z-index: 2;
+            pointer-events: none;
         }
-        .project-item:hover::before {
-            transform: scaleY(1);
-            transform-origin: top;
-        }
-        .project-item > * { position: relative; z-index: 1; }
+        .project-card:hover .project-visual::before { opacity: 0.85; }
 
-        .project-num {
+        /* Big number overlay on image */
+        .project-num-big {
+            position: absolute;
+            top: 20px; left: 24px;
             font-family: var(--f-mono);
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            color: rgba(242, 236, 224, 0.6);
-            transition: color 0.3s;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--paper);
+            background: rgba(13, 13, 13, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 14px;
+            border-radius: 100px;
+            z-index: 3;
+            transition: background 0.3s, color 0.3s;
         }
-        .project-item:hover .project-num { color: var(--night); }
+        .project-card:hover .project-num-big {
+            background: var(--paper);
+            color: var(--night);
+        }
 
+        /* "View" indicator that appears on hover */
+        .project-view-hint {
+            position: absolute;
+            bottom: 24px; right: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--f-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--paper);
+            background: var(--accent);
+            padding: 12px 18px;
+            border-radius: 100px;
+            z-index: 3;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+        }
+        .project-view-hint svg { width: 14px; height: 14px; }
+        .project-card:hover .project-view-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-content { padding: 0; }
+        .project-content .project-tag {
+            font-family: var(--f-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .project-content .project-tag::before {
+            content: '';
+            width: 24px; height: 1px;
+            background: var(--accent);
+        }
         .project-content h3 {
             font-family: var(--f-display);
             font-weight: 400;
-            font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+            font-size: clamp(2.2rem, 5vw, 4rem);
             line-height: 1;
-            letter-spacing: -0.02em;
-            margin-bottom: 18px;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
             transition: color 0.3s;
+            padding-bottom: 0.1em;
         }
-        .project-item:hover .project-content h3 {
-            color: var(--night);
+        .project-card:hover .project-content h3 em,
+        .project-content h3 em {
             font-style: italic;
+            color: var(--accent);
         }
 
-        .project-meta {
+        .project-meta-block {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.95rem;
-            color: rgba(242, 236, 224, 0.7);
-            max-width: 680px;
-            transition: color 0.3s;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 30px;
         }
-        .project-item:hover .project-meta { color: rgba(13, 13, 13, 0.8); }
-        .project-meta p { margin: 0; }
-        .project-meta strong {
+        .project-meta-block p {
+            font-size: 0.98rem;
+            line-height: 1.55;
+            color: rgba(242, 236, 224, 0.75);
+            margin: 0;
+        }
+        .project-meta-block strong {
             font-family: var(--f-mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--accent);
             display: block;
-            margin-bottom: 4px;
-            transition: color 0.3s;
-        }
-        .project-item:hover .project-meta strong { color: var(--night); }
-
-        .project-thumb {
-            width: 160px;
-            height: 100px;
-            overflow: hidden;
-            border-radius: 4px;
-            position: relative;
-            flex-shrink: 0;
-            transition: transform 0.5s var(--ease-out);
-        }
-        .project-thumb img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s var(--ease-out), filter 0.4s;
-            filter: grayscale(60%) brightness(0.7);
-        }
-        .project-item:hover .project-thumb img {
-            transform: scale(1.08);
-            filter: grayscale(0%) brightness(1);
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
-        .project-arrow {
-            width: 54px; height: 54px;
-            border-radius: 50%;
-            border: 1px solid rgba(242, 236, 224, 0.4);
-            display: flex;
+        .project-cta {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            transition: border-color 0.3s, background 0.3s, transform 0.5s var(--ease-out);
-            flex-shrink: 0;
-        }
-        .project-arrow svg { width: 18px; height: 18px; stroke: currentColor; }
-        .project-item:hover .project-arrow {
-            border-color: var(--night);
-            background: var(--night);
+            gap: 14px;
+            font-family: var(--f-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             color: var(--paper);
-            transform: rotate(-45deg);
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--paper);
+            transition: color 0.3s, border-color 0.3s, gap 0.3s var(--ease-out);
         }
+        .project-card:hover .project-cta {
+            color: var(--accent);
+            border-color: var(--accent);
+            gap: 22px;
+        }
+        .project-cta svg { width: 16px; height: 16px; transition: transform 0.4s var(--ease-out); }
+        .project-card:hover .project-cta svg { transform: translate(4px, -4px); }
 
-        @media (max-width: 900px) {
-            .project-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 28px 0; }
-            .project-thumb, .project-arrow { display: none; }
+        @media (max-width: 800px) {
+            .project-card,
+            .project-card.flip {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .project-card.flip .project-visual { order: 1; }
+            .project-card.flip .project-content { order: 2; }
+            .project-content h3 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+            .project-num-big { font-size: 0.7rem; padding: 6px 12px; }
+            .project-view-hint { font-size: 0.68rem; padding: 8px 14px; }
         }
 
         /* --- Outside / Interests section --- */
@@ -878,21 +1062,53 @@
 
 <!-- CAREER JOURNEY -->
 <section data-section id="career">
-    <div class="section-head reveal">
-        <div class="index">01 — Career</div>
-        <h2>The story so <em>far.</em></h2>
-    </div>
+    <div class="career-layout">
+        <div class="career-intro">
+            <div class="index reveal">01 — Career</div>
+            <h2 class="reveal reveal-delay-1">The story so <em>far.</em></h2>
+            <ul class="companies-list reveal reveal-delay-2">
+                <li class="current">
+                    <div class="co-meta">
+                        <span class="co">TUI</span>
+                        <span class="role">Product Manager · Traffic &amp; AEO</span>
+                    </div>
+                    <span class="yr">Now</span>
+                </li>
+                <li>
+                    <div class="co-meta">
+                        <span class="co">Holland &amp; Barrett</span>
+                        <span class="role">Product Manager · Account &amp; Loyalty</span>
+                    </div>
+                    <span class="yr">Previously</span>
+                </li>
+                <li>
+                    <div class="co-meta">
+                        <span class="co">Marks &amp; Spencer</span>
+                        <span class="role">Product Manager · Loyalty</span>
+                    </div>
+                    <span class="yr">Previously</span>
+                </li>
+                <li>
+                    <div class="co-meta">
+                        <span class="co">Interactive Schools</span>
+                        <span class="role">Lead Digital Storyteller · Content &amp; Web Production</span>
+                    </div>
+                    <span class="yr">Previously</span>
+                </li>
+            </ul>
+        </div>
 
-    <div class="career-body reveal reveal-delay-1" id="careerBody">
-        <p>
-            I've spent my career helping major brands like TUI, Holland &amp; Barrett, and M&amp;S build better digital experiences. Most recently at <b>TUI</b>, I've been leading squads to rethink holiday discovery — establishing the brand as a top authority in travel search by leaning into AI and automation, rebuilding our core page templates mobile-first, and shipping a new static template that drove +6.2% page conversion and +1 SEO ranking. Alongside this, I've led page-level optimisations that have added over £1m in annual margin.
-        </p>
-        <p>
-            Before that, I was at <b>Holland &amp; Barrett</b>, where I helped start discovery on their brand-new loyalty scheme and led the discovery for features that drove long-term retention and increased total annual customer value by £829k pa. I also spent time at <b>Marks &amp; Spencer</b>, where I focused on making the Sparks program more rewarding — from exploring new premium membership tiers to running experiments that successfully cut checkout bounce rates by 3%.
-        </p>
-        <p>
-            I actually started my product journey at <b>Interactive Schools</b>, as the Lead Digital Experience Manager, where I managed the launch of over 50 websites annually and built new testing processes that slashed bug reports by 50%. I'm at my best when I'm using data to solve real human problems or taking a product from 0 to 1.
-        </p>
+        <div class="career-body reveal reveal-delay-1" id="careerBody">
+            <p>
+                I've spent my career helping major brands like TUI, Holland &amp; Barrett, and M&amp;S build better digital experiences. Most recently at <b>TUI</b>, I've been leading squads to rethink holiday discovery — establishing the brand as a top authority in travel search by leaning into AI and automation, rebuilding our core page templates mobile-first, and shipping a new static template that drove +6.2% page conversion and +1 SEO ranking. Alongside this, I've led page-level optimisations that have added over £1m in annual margin.
+            </p>
+            <p>
+                Before that, I was at <b>Holland &amp; Barrett</b>, where I helped start discovery on their brand-new loyalty scheme and led the discovery for features that drove long-term retention and increased total annual customer value by £829k pa. I also spent time at <b>Marks &amp; Spencer</b>, where I focused on making the Sparks program more rewarding — from exploring new premium membership tiers to running experiments that successfully cut checkout bounce rates by 3%.
+            </p>
+            <p>
+                I actually started my product journey at <b>Interactive Schools</b>, as the Lead Digital Experience Manager, where I managed the launch of over 50 websites annually and built new testing processes that slashed bug reports by 50%. I'm at my best when I'm using data to solve real human problems or taking a product from 0 to 1.
+            </p>
+        </div>
     </div>
 
     <!-- Animated stats -->
@@ -1009,49 +1225,73 @@
         <h2>Built on <em>weekends.</em></h2>
     </div>
 
-    <div class="project-list">
-        <a class="project-item reveal" href="https://retmap.github.io/hows-my-air/" target="_blank" rel="noopener noreferrer">
-            <div class="project-num">/ 01</div>
+    <div class="project-grid">
+        <a class="project-card reveal" href="https://retmap.github.io/hows-my-air/" target="_blank" rel="noopener noreferrer">
+            <div class="project-visual">
+                <div class="project-num-big">Project / 01</div>
+                <img src="hows-my-air.jpg" alt="How's My Air">
+                <div class="project-view-hint">
+                    Visit Live
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                </div>
+            </div>
             <div class="project-content">
-                <h3>How's My Air</h3>
-                <div class="project-meta">
+                <div class="project-tag">Web App / Open API</div>
+                <h3>How's My <em>Air</em></h3>
+                <div class="project-meta-block">
                     <p><strong>Challenge</strong>Localized air quality data is often buried in complex reports or requires manual entry, making quick health checks difficult.</p>
                     <p><strong>Solution</strong>Built a responsive web app using an open-source API and location tracking to deliver instant, hyper-local insights.</p>
                 </div>
-            </div>
-            <div class="project-thumb"><img src="hows-my-air.jpg" alt="How's My Air"></div>
-            <div class="project-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                <div class="project-cta">
+                    View Project
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                </div>
             </div>
         </a>
 
-        <a class="project-item reveal reveal-delay-1" href="https://retmap.github.io/Pachinko/" target="_blank" rel="noopener noreferrer">
-            <div class="project-num">/ 02</div>
+        <a class="project-card flip reveal" href="https://retmap.github.io/Pachinko/" target="_blank" rel="noopener noreferrer">
+            <div class="project-visual">
+                <div class="project-num-big">Project / 02</div>
+                <img src="pachinko.jpg" alt="Pachinko Game">
+                <div class="project-view-hint">
+                    Play Now
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                </div>
+            </div>
             <div class="project-content">
-                <h3>Pachinko Game</h3>
-                <div class="project-meta">
+                <div class="project-tag">Browser Game / Casual</div>
+                <h3>Pachinko <em>Game</em></h3>
+                <div class="project-meta-block">
                     <p><strong>Challenge</strong>Existing free-to-play Pachinko options are often cluttered with ads or feature outdated interfaces.</p>
                     <p><strong>Solution</strong>Developed a minimalist, browser-native version of the game to provide a clean and accessible player experience.</p>
                 </div>
-            </div>
-            <div class="project-thumb"><img src="pachinko.jpg" alt="Pachinko Game"></div>
-            <div class="project-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                <div class="project-cta">
+                    View Project
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                </div>
             </div>
         </a>
 
-        <a class="project-item reveal reveal-delay-2" href="https://retmap.github.io/pixel-art-studio/" target="_blank" rel="noopener noreferrer">
-            <div class="project-num">/ 03</div>
+        <a class="project-card reveal" href="https://retmap.github.io/pixel-art-studio/" target="_blank" rel="noopener noreferrer">
+            <div class="project-visual">
+                <div class="project-num-big">Project / 03</div>
+                <img src="pixel-art-studio.jpg" alt="Pixel Art Studio">
+                <div class="project-view-hint">
+                    Try Editor
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                </div>
+            </div>
             <div class="project-content">
-                <h3>Pixel Art Studio</h3>
-                <div class="project-meta">
+                <div class="project-tag">Creative Tool / PNG Export</div>
+                <h3>Pixel Art <em>Studio</em></h3>
+                <div class="project-meta-block">
                     <p><strong>Challenge</strong>Standard digital art software can be over-complicated for users needing to create simple retro-style assets.</p>
                     <p><strong>Solution</strong>Engineered an intuitive, browser-based editor with essential tools and PNG export for a streamlined workflow.</p>
                 </div>
-            </div>
-            <div class="project-thumb"><img src="pixel-art-studio.jpg" alt="Pixel Art Studio"></div>
-            <div class="project-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                <div class="project-cta">
+                    View Project
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+                </div>
             </div>
         </a>
     </div>
